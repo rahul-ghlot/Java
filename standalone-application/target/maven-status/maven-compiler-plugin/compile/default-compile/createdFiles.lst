@@ -1,1 +1,6 @@
+com\gehlot\repository\ProductRepository.class
+com\gehlot\entity\Product.class
 com\gehlot\controller\HelloController.class
+com\gehlot\StandaloneApplication.class
+com\gehlot\service\ProductService.class
+com\gehlot\controller\ProductController.class
