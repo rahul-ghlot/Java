@@ -2,3 +2,4 @@
 target/
 applog.log/
 standalone-application.iml/
+*.gz/
