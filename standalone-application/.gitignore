@@ -1,5 +1,5 @@
 .idea/
 target/
-applog.log/
+*.log/
 standalone-application.iml/
 *.gz/
