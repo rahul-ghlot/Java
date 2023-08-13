@@ -1,21 +1,23 @@
 package com.gehlot.controller;
 
-import com.gehlot.service.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloController {
+@EnableMethodSecurity
+public class AuthTestController {
 
-    @Autowired
-    HelloService helloService;
+    @GetMapping("/normaluser")
+    @PreAuthorize("hasRole('USER')")
+    public String getNormalUser() {
+        return "Normal User";
+    }
 
-    @GetMapping("/hello")
-    public String getHello() {
-        return helloService.getHello();
+    @GetMapping("/adminuser")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String getAdminuser() {
+        return "Admin User";
     }
 }
