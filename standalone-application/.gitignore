@@ -1,5 +1,5 @@
 .idea/
 target/
-*.log/
+/*.log
 standalone-application.iml/
-*.gz/
+/*.gz
