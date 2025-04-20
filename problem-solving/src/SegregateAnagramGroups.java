@@ -23,7 +23,7 @@ public class SegregateAnagramGroups {
                 group.put(sortedString, tempList);
             }
         }
-        // group.forEach((key, value)-> System.out.println(key + ":" + value));
+         group.forEach((key, value)-> System.out.println(key + ":" + value));
 
         // using java8
         Collection<List<String>> l = list.stream().collect(Collectors.groupingBy(word -> {

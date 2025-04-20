@@ -26,8 +26,6 @@ public class ComparableAndComparator {
         List<Student> list = CollectionUtility.getStudentList();
 
         System.out.println(list);
-        Collections.sort(list);
-        System.out.println(list);
 
         // using comparator
         Collections.sort(list, new SortStudentById());
