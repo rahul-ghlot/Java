@@ -1,1 +1,7 @@
-Object level locking and Class level locking
+What is Object level locking and Class level locking ?
+
+  Object level locking : synchronized(this) / non static synchronized method
+  Two threads can execute simultaneously on piece of code if they are not belongs to same object.
+  Class level locking : synchronized(ClassName.class) / static synchronized method
+  Two Threads can not execute simultaneously on piece of code.
+
