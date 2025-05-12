@@ -58,7 +58,7 @@ Improving response times and throughput
 2. Key JVM Memory Areas
 Area	          Purpose
 Heap	          Stores objects and class instances
-Young           Gen	Newly created objects (Eden + Survivor)
+Young Gen	      Newly created objects (Eden + Survivor)
 Old Gen	        Long-lived objects
 Metaspace	      Class metadata (replaces PermGen from Java 8)
 
