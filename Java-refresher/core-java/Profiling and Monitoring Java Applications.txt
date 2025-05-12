@@ -1,0 +1,83 @@
+1. Purpose
+Profiling and monitoring help identify:
+Performance bottlenecks (CPU, memory)
+Memory leaks, excessive GC
+Thread issues, deadlocks
+Application health and metrics
+
+2. Tools Commonly Used
+VisualVM – GUI-based profiling (CPU, memory, threads)
+Java Flight Recorder (JFR) – Low-overhead profiling (Java 11+)
+Java Mission Control (JMC) – For analyzing JFR recordings
+Spring Boot Actuator + Micrometer – Real-time app metrics
+Prometheus + Grafana – Dashboarding and alerting
+JConsole – Lightweight monitoring via JMX
+
+3. Enabling Remote Monitoring (JMX)
+To monitor a remote JVM:
+
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.port=9010
+-Dcom.sun.management.jmxremote.rmi.port=9011
+-Djava.rmi.server.hostname=<server-ip>
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+
+Note : Use authentication and SSL in production.
+
+4. Profiling with VisualVM
+Connect via JMX (local or remote)
+Use CPU profiling to find slow methods
+Use Memory profiling to detect object retention
+Capture heap/thread dumps for analysis
+
+5. Lightweight Monitoring in Microservices
+Spring Boot Actuator exposes:
+/actuator/health, /metrics, /prometheus, etc.
+Micrometer pushes metrics to:
+Prometheus, Datadog, New Relic, etc.
+Ideal for live dashboards (Grafana) and alerts
+
+6. Java Flight Recorder (JFR) for Production
+java -XX:StartFlightRecording=filename=recording.jfr,duration=300s -jar app.jar
+Analyze .jfr file with Java Mission Control
+
+7. Best Practices
+Avoid heavy profiling in production (use JFR or metrics instead)
+Secure JMX endpoints in production
+Automate monitoring via dashboards + alerts
+
+
+==== Memory Tuning & GC Tuning ====
+1. Objective
+Optimize application performance and stability by:
+Reducing GC pauses
+Preventing OutOfMemoryError
+Improving response times and throughput
+
+2. Key JVM Memory Areas
+Area	          Purpose
+Heap	          Stores objects and class instances
+Young           Gen	Newly created objects (Eden + Survivor)
+Old Gen	        Long-lived objects
+Metaspace	      Class metadata (replaces PermGen from Java 8)
+
+3. Basic JVM Memory Tuning Flags
+-Xms512m         # Initial heap size
+-Xmx2g           # Max heap size
+-Xmn512m         # Young generation size
+-XX:MetaspaceSize=128m
+-XX:MaxMetaspaceSize=256m
+
+4. GC Tuning – Choose the Right Garbage Collector
+G1 GC (Default in Java 9+)
+-XX:+UseG1GC
+
+Parallel GC (Throughput-focused)
+-XX:+UseParallelGC
+
+5. GC Logging for Analysis
+-XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log
+Or for Java 9+ unified logging:
+-Xlog:gc*:file=gc.log:time,uptime,level,tags
+Analyze with tools like GCViewer, GCEasy, or JClarity Censum
