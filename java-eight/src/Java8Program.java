@@ -47,7 +47,73 @@ public class Java8Program {
         System.out.println(sumOfDigits.getSum());
     }
 
+    public static void findEmpListNameStartWithA(){
+        List<Employee> emp = Arrays.asList(
+                new Employee(1,"Alice", 100000000d, "HR",22),
+                new Employee(2,"Bob", 20000000d, "Dev",24),
+                new Employee(3,"Ankit", 300000000d, "Dev",26)
+        );
+
+        emp.stream().filter(e -> e.name.startsWith("A")).forEach(System.out::println);
+    }
+
+    public static void groupEmployeeByDeptName(){
+        List<Employee> emp = Arrays.asList(
+                new Employee(1,"Alice", 100000000d, "HR",22),
+                new Employee(2,"Bob", 20000000d, "Dev",24),
+                new Employee(3,"Ankit", 300000000d, "Dev", 26),
+                new Employee(4,"Ajay", 200000000d, "HR", 23)
+        );
+
+        emp.stream().collect(Collectors.groupingBy(e->e.deptName, Collectors.toList()))
+                .forEach((k,v)->System.out.println(k+" "+v));
+    }
+
+    // Find the max age of employees
+    public static void findEmpWithMaxAge(){
+        List<Employee> emp = Arrays.asList(
+                new Employee(1,"Alice", 100000000d, "HR",22),
+                new Employee(2,"Bob", 20000000d, "Dev",24),
+                new Employee(3,"Ankit", 300000000d, "Dev", 26),
+                new Employee(4,"Ajay", 200000000d, "HR", 23)
+        );
+
+       Employee employee = emp.stream().max(Comparator.comparingInt(e->e.age)).get();
+       System.out.println(employee);
+    }
+
+    //Find all department names
+    public static void findAllDepartmentName(){
+        List<Employee> emp = Arrays.asList(
+                new Employee(1,"Alice", 100000000d, "HR",22),
+                new Employee(2,"Bob", 20000000d, "Dev",24),
+                new Employee(3,"Ankit", 300000000d, "Dev", 26),
+                new Employee(4,"Ajay", 200000000d, "HR", 23)
+        );
+
+        emp.stream().map(e->e.deptName).distinct().collect(Collectors.toList()).forEach(System.out::println);
+    }
+
+    //Find the count of employee in each department
+    public static void findCountOFEmpInEachDepartment(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().collect(Collectors.groupingBy(e-> e.deptName , Collectors.toList()))
+                .forEach((k,v) -> System.out.println(k + " " + v.size()));
+    }
+
+    //Find the list of employees whose age is less than 30
+    public static void findEmployeesWithAgeLessThanThirty(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().filter(e ->e.age < 30 ).forEach(System.out::println);
+    }
+
+    //Find the list of employees whose age is less than 30
+    public static void findEmployeesWithAgeLessThanThirtyOneAndGreaterThanTwentySix(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().filter(e -> e.age > 26 &&  e.age < 31  ).forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
-        sumOfAllDigit();
+        findEmployeesWithAgeLessThanThirty();
     }
 }

@@ -31,5 +31,6 @@ public class SegregateAnagramGroups {
             Arrays.sort(chars);
             return new String(chars); // sorted word as key
         })).values();
+        System.out.println(l);
     }
 }

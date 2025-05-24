@@ -1,8 +1,9 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
 
 public class StringToDateConvert {
     public static void main(String[] args) throws ParseException {
@@ -12,8 +13,8 @@ public class StringToDateConvert {
         System.out.println(date);
 
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy h:mm:ss a");
-        LocalDate localDate = LocalDate.parse(dateInString, formatter);
-        System.out.println(localDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy h:mm:ss a", Locale.ENGLISH);
+        LocalDateTime localDateTime = LocalDateTime.parse(dateInString, formatter);
+        System.out.println(localDateTime);
     }
 }
