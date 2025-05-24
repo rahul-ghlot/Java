@@ -126,8 +126,29 @@ public class Java8Program {
 
     }
 
+    //Find the highest salary in each department
+    public static void findHighestSalaryFromEachDept(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().collect(Collectors.groupingBy(e->e.deptName, Collectors.toList()))
+                .forEach((k,v)->System.out.println(k+" "+v.stream().max(Comparator.comparingDouble(e -> e.salary))));
+    }
+
+    //Find the list of employee and sort them by their salary
+    public static void findEmpSortedBySalary(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().sorted(Comparator.comparingDouble(e -> e.salary))
+                .forEach(System.out::println);
+    }
+
+    //Find the employee who has second-highest salary
+    public static void findSecondHighestSalary(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        Employee employee =emp.stream().sorted(Comparator.comparing(Employee::getSalary).reversed()).skip(1).findFirst().get();
+        System.out.println(employee);
+    }
+
     public static void main(String[] args) {
-        findAverageSalaryFromEachDept();
+        findSecondHighestSalary();
     }
 
 }

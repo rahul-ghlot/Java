@@ -22,6 +22,34 @@ public class Employee {
         this.city = city;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getSalary() {
+        return salary;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
