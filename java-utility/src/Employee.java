@@ -10,13 +10,16 @@ public class Employee {
 
     String gender;
 
-    public Employee(int id, String name, Double salary, String deptName, int age, String gender) {
+    String city;
+
+    public Employee(int id, String name, Double salary, String deptName, int age, String gender, String city) {
         this.id = id;
         this.name = name;
         this.salary = salary;
         this.deptName = deptName;
         this.age = age;
         this.gender = gender;
+        this.city = city;
     }
 
     @Override
@@ -28,6 +31,7 @@ public class Employee {
                 ", deptName=" + deptName +
                 ", age=" + age +
                 ", gender=" + gender +
+                ", city=" + city +
                 '}';
     }
 }

@@ -95,9 +95,39 @@ public class Java8Program {
 
     //Find the average age of male and female employee
     public static void findAverageAgeMaleFemaleEmployee(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().collect(Collectors.partitioningBy(e -> "Male".equals(e.gender)))
+                .forEach((k,v) -> System.out.println(k + " "+v));
+        emp.stream().collect(Collectors.partitioningBy(e -> "Male".equals(e.gender)))
+                .forEach((k,v) -> System.out.println(v.stream().mapToInt(e -> e.age).average().getAsDouble()));
+    }
+
+    //Find the department who is having maximum number of employee
+    public static void findDeptWhoHavingMaxNumberEmp() {
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        String dept = emp.stream().collect(Collectors.groupingBy(e -> e.deptName, Collectors.toList()))
+                .entrySet().stream().max(Comparator.comparingInt(e -> e.getValue().size()))
+                .get().getKey();
+        System.out.println(dept);
+    }
+
+    //Find the Employee who stays in Delhi and sort them by their names
+    public static void findSortedEmpByNameBasedOnCity(String city){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().filter(e -> city.equals(e.city)).sorted(Comparator.comparing(e -> e.name))
+                .forEach(System.out::println);
+    }
+
+    //Find average salary from each department
+    public static void findAverageSalaryFromEachDept(){
+        List<Employee> emp = CollectionUtility.getEmployeeList();
+        emp.stream().collect(Collectors.groupingBy(e->e.deptName, Collectors.toList()))
+                .forEach((k,v)-> System.out.println(k +" "+v.stream().mapToDouble(e->e.salary).average().getAsDouble()));
+
     }
 
     public static void main(String[] args) {
-        findAverageAgeMaleFemaleEmployee();
+        findAverageSalaryFromEachDept();
     }
+
 }

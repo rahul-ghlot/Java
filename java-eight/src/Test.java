@@ -32,17 +32,8 @@ public class Test {
     }
 
     public static void findListofEmpMaxSalary(){
-      Employee e1 = new Employee(1, "A", Double.valueOf(10000000), "HR",22);
-      Employee e2 = new Employee(2, "C", Double.valueOf(20000000), "Dev", 24);
-      Employee e3 = new Employee(3, "B", Double.valueOf(10000000), "HR",23);
-      Employee e4 = new Employee(4, "T", Double.valueOf(10000000), "Infra",21);
-      Employee e5 = new Employee(5, "D", Double.valueOf(50000000), "Architect",30);
-      Employee e6 = new Employee(6, "F", Double.valueOf(20000000), "Dev",25);
-      List<Employee> list =  Arrays.asList(e1,e2,e3,e4,e5);
-
+      List<Employee> list =  CollectionUtility.getEmployeeList();
       Employee e = list.stream().max((e11,e22)-> e11.salary.compareTo(e22.salary)).orElse(null);
-
-
 
         Map<Double, List<Employee>> empMap =
                 list.stream().collect(Collectors.groupingBy(emp ->emp.salary));

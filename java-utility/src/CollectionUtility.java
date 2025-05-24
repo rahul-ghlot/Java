@@ -27,11 +27,11 @@ public class CollectionUtility {
 
     public static List<Employee> getEmployeeList() {
         List<Employee> emp = Arrays.asList(
-                new Employee(1,"Alica", 100000000d, "HR",22, "Female"),
-                new Employee(2,"Bab", 20000000d, "Dev",24, "Male"),
-                new Employee(3,"Ankit", 300000000d, "Dev", 25, "Male"),
-                new Employee(4,"Ajay", 200000000d, "HR", 23, "Male"),
-                new Employee(5,"Preeti", 600000000d, "HR", 30, "Female")
+                new Employee(1,"Alica", 100000000d, "HR",22, "Female", "Delhi"),
+                new Employee(2,"Bab", 200000000d, "Dev",24, "Male", "Delhi"),
+                new Employee(3,"Ankit", 300000000d, "Dev", 25, "Male", "Mumbai"),
+                new Employee(4,"Ajay", 200000000d, "HR", 23, "Male", "Indore"),
+                new Employee(5,"Preeti", 600000000d, "HR", 30, "Female", "Indore")
         );
         return emp;
     }
